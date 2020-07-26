@@ -57,35 +57,6 @@ extension Collection where Element : Numeric {
     }
 }
 
-extension Collection where Element : Comparable {
-    
-    /// Find the maximum element in the collection
-    /// - Returns: Max element
-    func max() -> Element? {
-        var best: Element? = nil
-        for e in self {
-            if best == nil || e > best! {
-                best = e
-            }
-        }
-        
-        return best
-    }
-    
-    /// Find the minimum element in the collection
-    /// - Returns: Min element
-    func min() -> Element? {
-        var best: Element? = nil
-        for e in self {
-            if best == nil || e < best! {
-                best = e
-            }
-        }
-        
-        return best
-    }
-}
-
 extension Collection where Element : Hashable {
     
     /// Distinct elements in the sequence
