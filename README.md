@@ -1,3 +1,3 @@
 # THSwiftUtil
 
-A description of this package.
+Some useful utility methods for Swift.
