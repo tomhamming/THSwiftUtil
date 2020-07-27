@@ -8,7 +8,7 @@
 import Foundation
 
 /// A group of elements with a key
-struct Group<Key, Element> {
+public struct Group<Key, Element> {
     let key: Key
     private var elements: [Element]
     init(_ key: Key) {
@@ -16,38 +16,36 @@ struct Group<Key, Element> {
         self.elements = []
     }
     
-    mutating func append(_ newElement: Element) {
+    fileprivate mutating func append(_ newElement: Element) {
         self.elements.append(newElement)
     }
 }
 
 extension Group : Sequence {
-    typealias Iterator = IndexingIterator<Array<Element>>
-    
-    func makeIterator() -> Iterator {
+    public func makeIterator() -> IndexingIterator<Array<Element>> {
         return self.elements.makeIterator()
     }
 }
 
 extension Group : Collection {
-    var startIndex: Int {
+    public var startIndex: Int {
         return self.elements.startIndex
     }
     
-    var endIndex: Int {
+    public var endIndex: Int {
         return self.elements.endIndex
     }
     
-    func index(after i: Int) -> Int {
+    public func index(after i: Int) -> Int {
         return self.elements.index(after: i)
     }
     
-    subscript(position: Int) -> Element {
+    public subscript(position: Int) -> Element {
         return self.elements[position]
     }
 }
 
-extension Collection where Element : Hashable {
+public extension Collection where Element : Hashable {
     
     /// Distinct elements in the sequence
     /// - Returns: An array of distinct values
@@ -79,7 +77,7 @@ extension Collection where Element : Hashable {
     }
 }
 
-extension Collection {
+public extension Collection {
     
     /// Group elements of a collection by a value produced by a transform
     /// - Parameter transform: Transform each element to its key value

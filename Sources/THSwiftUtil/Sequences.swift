@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Sequence where Element : Numeric {
+public extension Sequence where Element : Numeric {
     
     /// Sum elements of a sequence of numerics
     /// - Returns: The sum of the elements of the sequence
@@ -16,7 +16,7 @@ extension Sequence where Element : Numeric {
     }
 }
 
-extension Sequence {
+public extension Sequence {
     /// Sort elements ascending by the result of a transform
     /// - Parameter transform: Transform each element to its comparable value
     /// - Throws: Any error thrown by the transform
