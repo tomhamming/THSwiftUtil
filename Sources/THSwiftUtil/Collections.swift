@@ -9,7 +9,7 @@ import Foundation
 
 /// A group of elements with a key
 public struct Group<Key, Element> {
-    let key: Key
+    public let key: Key
     private var elements: [Element]
     init(_ key: Key) {
         self.key = key
