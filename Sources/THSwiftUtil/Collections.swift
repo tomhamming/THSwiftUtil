@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OrderedCollections
 
 /// A group of elements with a key
 public struct Group<Key, Element> {
@@ -82,9 +83,9 @@ public extension Collection {
     /// Group elements of a collection by a value produced by a transform
     /// - Parameter transform: Transform each element to its key value
     /// - Throws: Any error thrown by the transform
-    /// - Returns: An array of groups of elements, where each group's key is a value produced by the transform and the elements are the elements of the collection that transformed to that value
+    /// - Returns: An array of groups of elements, ordered by the first appearance of each key in the collection, where each group's key is a value produced by the transform and the elements are the elements of the collection that transformed to that value
     func groupBy<T: Hashable>(_ transform: (Self.Element) throws -> T) rethrows -> [Group<T, Self.Element>] {
-        var groups: [T: Group<T, Self.Element>] = [:]
+        var groups = OrderedDictionary<T, Group<T, Self.Element>>()
         for element in self {
             let key = try transform(element)
             if groups[key] == nil {

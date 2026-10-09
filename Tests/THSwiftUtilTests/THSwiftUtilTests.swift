@@ -158,6 +158,17 @@ final class THSwiftUtilTests: XCTestCase {
         XCTAssertEqual(groups.count, 0)
     }
     
+    func testGroupPreservesOrder() throws {
+        // Keys first appear in the order 3, 1, 2, 0; repeat many times to guard against hash-order flukes
+        for _ in 0..<50 {
+            let values = [3, 1, 2, 0, 3, 1, 2, 0, 1].map { $0 }
+            let groups = values.groupBy({$0})
+            
+            XCTAssertEqual(groups.map({$0.key}), [3, 1, 2, 0])
+            XCTAssertEqual(groups.map({$0.count}), [2, 3, 2, 2])
+        }
+    }
+    
     //MARK: - Sort tests
     
     func testSortBy() throws {
